@@ -1,0 +1,29 @@
+.wrapper {
+  padding: 30px;
+}
+.title {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.item {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  color: whitesmoke;
+  border: 1px solid goldenrod;
+  box-shadow: 0 2px 5px #000000bb;
+}
+.author {
+  padding: 10px;
+  color: goldenrod;
+}
+.content {
+  padding: 10px;
+}
