@@ -7,26 +7,30 @@ const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   useEffect(() => {
-    try {
-      const getData = async () => {
+    const getData = async () => {
+      try {
         const data = await fetchMovies();
         setMovies(data);
-      };
-      getData();
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getData();
   }, []);
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
   if (error || !movies) {
-    return <p>Error: Failed to fetch movies</p>;
+    return <p>Error: {error || "Failed to fetch movies"}</p>;
   }
+
   return (
     <>
       <h1 className={s.title}>Popular Movies</h1>

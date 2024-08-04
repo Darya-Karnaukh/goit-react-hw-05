@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { fetchMoviesByName } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
+import { useSearchParams } from "react-router-dom";
 import s from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
-  const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("query") || "";
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const MoviesPage = () => {
   }, [query]);
 
   const onSubmit = (values, actions) => {
-    setQuery(values.input);
+    setSearchParams({ query: values.input });
     actions.resetForm();
   };
 
@@ -33,10 +35,10 @@ const MoviesPage = () => {
     <div>
       <Toaster position="top-right" />
       <Formik
-        initialValues={{ input: "" }}
+        initialValues={{ input: query }}
         onSubmit={(values, actions) => {
           if (!values.input) {
-            toast.error("Please enter text to search for images");
+            toast.error("Please enter text to search for movies");
           } else {
             onSubmit(values, actions);
           }
